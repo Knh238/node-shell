@@ -1,10 +1,11 @@
 const pwd = require('./pwd');
 const ls = require('./ls');
-const cat = require('.cat');
+const cat = require('./cat');
 
 process.stdout.write('prompt >');
 process.stdin.on('data', (data) => {
     const cmd = data.toString().trim();
+    let split=cmd.split(' ');
 
     if(cmd === 'pwd'){
         pwd();
@@ -13,7 +14,8 @@ process.stdin.on('data', (data) => {
         ls();
     }
     if(cmd.slice(0,3) === 'cat') {
-        cat();
+        var file="./"+split[1];
+        cat(file);
     }
 
     process.stdout.write('You typed: ' + cmd);

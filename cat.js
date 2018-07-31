@@ -1,5 +1,11 @@
-module.exports = function() {
-  const fs = require('fs');
+module.exports = function(fileName) {
+  const fsf = require('fs');
 
-  fs.readFile(fileName, () => {process.stdout.write()})
+  fsf.readFile(fileName, (err,data) => {
+    if (err) {
+      throw err;
+     } else {
+    process.stdout.write(data)
+  }});
+  process.stdout.write('\nprompt > ');
 }
